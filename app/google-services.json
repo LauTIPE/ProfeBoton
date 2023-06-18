@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "538074332414",
+    "project_id": "profeboton-802a0",
+    "storage_bucket": "profeboton-802a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538074332414:android:dc579dc320af0c8e66f9af",
+        "android_client_info": {
+          "package_name": "com.unab.bootcamp.lautipe.profeboton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538074332414-9gmo60990932p43r8upoiqp1m68ld2tp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.unab.bootcamp.lautipe.profeboton",
+            "certificate_hash": "36b088eb6f1e29b3c1f7c4c030ffb8f23a1825ed"
+          }
+        },
+        {
+          "client_id": "538074332414-3ircdk146sif9k2ii2dalmequgnch3ao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgGDzBidW5SVjwWmpQ26RVPcDVBitgDR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "538074332414-3ircdk146sif9k2ii2dalmequgnch3ao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
