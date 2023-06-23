@@ -20,6 +20,7 @@ class StudentActivity : AppCompatActivity() {
 
 
     private lateinit var db: FirebaseFirestore
+    private lateinit var lastQuestionId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +28,8 @@ class StudentActivity : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
 
-        val sessionRef = db.collection("sessions").document("sessionID1")
-        sessionRef.collection("questions")
+        val sessionRef = db.collection("Sessions").document("sessionID")
+        sessionRef.collection("activeQuestions")
             .orderBy("timeStamp", Query.Direction.DESCENDING)
             .limit(1)
             .addSnapshotListener { snapshots, e ->
@@ -40,6 +41,7 @@ class StudentActivity : AppCompatActivity() {
                 if (!snapshots!!.isEmpty) {
                     for (dc in snapshots.documentChanges) {
                         if (dc.type == DocumentChange.Type.ADDED) {
+                            lastQuestionId = dc.document.id
                             showPopup()
                         }
                     }
@@ -54,17 +56,33 @@ class StudentActivity : AppCompatActivity() {
 
         val yesButton: Button = layout.findViewById(R.id.button_option_one)
         yesButton.setOnClickListener {
-            // Aquí debes agregar el código para enviar la respuesta "up" a Firebase
+            sendResponse("up")
             popup.dismiss()
         }
 
         val noButton: Button = layout.findViewById(R.id.button_option_two)
         noButton.setOnClickListener {
-            // Aquí debes agregar el código para enviar la respuesta "down" a Firebase
+            sendResponse("down")
             popup.dismiss()
         }
 
         popup.showAtLocation(findViewById(R.id.root_layout), Gravity.CENTER, 0, 0)
+    }
+    fun sendResponse(choice: String) {
+        val response = hashMapOf(
+            "studentChoice" to choice
+        )
+
+        db.collection("Sessions").document("sessionID")
+            .collection("activeQuestions").document(lastQuestionId)
+            .collection("responses")
+            .add(response)
+            .addOnSuccessListener {
+                Log.d(TAG, "Response successfully written!")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error writing response", e)
+            }
     }
 }
 

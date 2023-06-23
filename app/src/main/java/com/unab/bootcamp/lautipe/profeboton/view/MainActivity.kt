@@ -22,14 +22,14 @@ class MainActivity : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
 
-        val button: Button = findViewById(R.id.bottom_start_question) // Cambia 'your_button_id' por el id real de tu botón
+        val button: Button = findViewById(R.id.bottom_start_question)
         button.setOnClickListener {
             val question = hashMapOf(
                 "timeStamp" to Timestamp.now(),
                 "responses" to arrayListOf<String>()
             )
 
-            db.collection("sessions").document("sessionID1").collection("questions")
+            db.collection("Sessions").document("sessionID").collection("activeQuestions")
                 .add(question)
                 .addOnSuccessListener {
                     Log.d(TAG, "DocumentSnapshot successfully written!")
