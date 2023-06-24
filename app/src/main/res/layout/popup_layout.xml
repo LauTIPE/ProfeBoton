@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root_layout"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,19 +14,26 @@
         android:text="Elige una opción:"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/button_option_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Opción 1"/>
+        android:text="👍"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorYesLight" />
 
     <Button
         android:id="@+id/button_option_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Opción 2"
+        android:text="👎"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorNoLight"
         android:layout_marginTop="16dp"/>
 
 </LinearLayout>
