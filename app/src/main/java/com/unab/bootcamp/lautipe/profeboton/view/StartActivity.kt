@@ -13,14 +13,22 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
+        // Obtener la referencia al TextView del botón del profesor
         val teacherText: TextView = findViewById(R.id.botton_teacher)
+
+        // Configurar el click listener del botón del profesor
         teacherText.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            // Crear un intent para iniciar la actividad TeacherActivity
+            val intent = Intent(this, TeacherActivity::class.java)
             startActivity(intent)
         }
 
+        // Obtener la referencia al botón del estudiante
         val studentButton: Button = findViewById(R.id.button_student)
+
+        // Configurar el click listener del botón del estudiante
         studentButton.setOnClickListener {
+            // Crear un intent para iniciar la actividad StudentActivity
             val intent = Intent(this, StudentActivity::class.java)
             startActivity(intent)
         }

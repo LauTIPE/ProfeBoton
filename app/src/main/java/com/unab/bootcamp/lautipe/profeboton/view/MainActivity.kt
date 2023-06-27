@@ -1,50 +1,62 @@
-// MainActivity.kt (Profesor)
-package com.unab.bootcamp.lautipe.profeboton.view
+package com.unab.bootcamp.lautipe.profeboton
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import com.google.firebase.Timestamp
-import com.google.firebase.firestore.FirebaseFirestore
-import com.unab.bootcamp.lautipe.profeboton.R
+import android.view.Menu
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.navigation.NavigationView
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
+import com.unab.bootcamp.lautipe.profeboton.databinding.ActivityMainBinding
 
-// Definición de la clase MainActivity que hereda de AppCompatActivity
 class MainActivity : AppCompatActivity() {
 
-    // Constante para el tag de los logs
-    companion object {
-        private const val TAG = "MainActivity"
-    }
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var binding: ActivityMainBinding
 
-    // Declaración de las variables que se usarán en la clase
-    private lateinit var db: FirebaseFirestore // Instancia de Firestore
-
-    // Función que se ejecuta al crear la actividad
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        db = FirebaseFirestore.getInstance() // Inicialización de la instancia de Firestore
+        // Configuración del layout de la actividad principal
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Inicialización del botón y asignación de su comportamiento al hacer click
-        val button: Button = findViewById(R.id.bottom_start_question)
-        button.setOnClickListener {
-            // Creación de un HashMap con la pregunta
-            val question = hashMapOf(
-                "timeStamp" to Timestamp.now(), // Marca de tiempo actual
-                "responses" to arrayListOf<String>() // Lista vacía para las respuestas
-            )
+        setSupportActionBar(binding.appBarMain.toolbar)
 
-            // Añadir la pregunta a la colección de preguntas activas
-            db.collection("Sessions").document("sessionID").collection("activeQuestions")
-                .add(question)
-                .addOnSuccessListener {
-                    Log.d(TAG, "DocumentSnapshot successfully written!") // Log en caso de éxito
-                }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Error writing document", e) // Log en caso de error
-                }
+        // Configuración del botón flotante
+        binding.appBarMain.fab.setOnClickListener { view ->
+            Snackbar.make(view, "Reemplaza con tu propia acción", Snackbar.LENGTH_LONG)
+                .setAction("Acción", null).show()
         }
+
+        // Configuración del drawer layout y el navigation view
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navView
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        // Configuración de las opciones de la barra de acción
+        // Se considera cada ID de menú como una destinación de nivel superior.
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+            ), drawerLayout
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflar el menú; esto agrega elementos a la barra de acción si está presente.
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
