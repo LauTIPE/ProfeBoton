@@ -1,69 +1,71 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="bottom"
-    android:foregroundGravity="top">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:foregroundGravity="top">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="¡Bienvenido a ProfeBotón!"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
 
         <TextView
+            android:id="@+id/instructionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="¡Bienvenido a ProfeBotón!"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
+            android:layout_above="@+id/button_student"
+            android:layout_centerHorizontal="true"
+            android:text="Apreta el botón para ingresar:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/instructionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button_student"
-        android:layout_centerHorizontal="true"
-        android:text="Apreta el botón para ingresar:"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/button_student"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/colorSecondary"
+            android:text="ESTUDIANTE"
+            android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/button_student"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:backgroundTint="@color/colorSecondary"
-        android:text="ESTUDIANTE"
-        android:textSize="24sp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp">
-
-        <TextView
-            android:id="@+id/text_teacher"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="o ingresar como "
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
 
-        <TextView
-            android:id="@+id/botton_teacher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contextClickable="true"
-            android:text="Profesor"
-            android:textAllCaps="true"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
-            android:textStyle="normal|bold" />
-    </LinearLayout>
-</RelativeLayout>
+            <TextView
+                android:id="@+id/text_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="o ingresar como "
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/botton_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contextClickable="true"
+                android:text="Profesor"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

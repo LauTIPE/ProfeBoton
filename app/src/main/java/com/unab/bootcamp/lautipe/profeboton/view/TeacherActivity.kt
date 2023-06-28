@@ -25,19 +25,28 @@ class TeacherActivity : AppCompatActivity() {
 
         val button: Button = findViewById(R.id.bottom_start_question)
         button.setOnClickListener {
-            val question = hashMapOf(
-                "timeStamp" to Timestamp.now(),
-                "responses" to arrayListOf<String>()
-            )
+            // Aquí necesitas obtener el ID de la pregunta que quieres actualizar
+            // en este ejemplo, estoy usando "questionID" como un marcador de posición
+            val questionId = "4MbODdoMvUpHArtFMnQN"
 
-            db.collection("Sessions").document("sessionID").collection("activeQuestions")
-                .add(question)
+            // Crear una referencia al documento de la pregunta en Firestore
+            val questionRef = db.collection("profesor").document("preguntas").collection("preguntasID").document(questionId)
+
+            // Actualizar el valor de "estado_pregunta" a true
+            questionRef
+                .update("estado_pregunta", true)
                 .addOnSuccessListener {
-                    Log.d(TAG, "DocumentSnapshot successfully written!")
+                    Log.d(TAG, "DocumentSnapshot successfully updated!")
                 }
                 .addOnFailureListener { e ->
-                    Log.w(TAG, "Error writing document", e)
+                    Log.w(TAG, "Error updating document", e)
                 }
+        }
+
+
+        val endClassButton: Button = findViewById(R.id.end_class_button)
+        endClassButton.setOnClickListener {
+            finish()
         }
     }
 }

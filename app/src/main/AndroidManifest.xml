@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Base.Theme.ProfeBoton."
+        android:theme="@style/Base.Theme.ProfeBoton"
         tools:targetApi="31">
 
         <activity android:name=".view.StartActivity"
@@ -21,8 +21,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.TeacherActivity" />
+        <activity
+            android:name=".view.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Base.Theme.ProfeBoton">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".view.StudentActivity" />
+
+        <activity android:name=".view.TeacherActivity" />
+
     </application>
 
 </manifest>

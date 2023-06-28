@@ -1,5 +1,6 @@
-package com.unab.bootcamp.lautipe.profeboton
+package com.unab.bootcamp.lautipe.profeboton.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -11,35 +12,33 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.unab.bootcamp.lautipe.profeboton.databinding.ActivityMainBinding
+import com.unab.bootcamp.lautipe.profeboton.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.appcompat.widget.Toolbar
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Configuración del layout de la actividad principal
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        setSupportActionBar(binding.appBarMain.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        // Configuración del botón flotante
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Reemplaza con tu propia acción", Snackbar.LENGTH_LONG)
-                .setAction("Acción", null).show()
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+            val intent = Intent(this, TeacherActivity::class.java)
+            startActivity(intent)
         }
 
-        // Configuración del drawer layout y el navigation view
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val navView: NavigationView = findViewById(R.id.nav_view)
+
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
-        // Configuración de las opciones de la barra de acción
-        // Se considera cada ID de menú como una destinación de nivel superior.
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
@@ -50,7 +49,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflar el menú; esto agrega elementos a la barra de acción si está presente.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }

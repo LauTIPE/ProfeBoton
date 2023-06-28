@@ -36,7 +36,9 @@ android {
 
     buildFeatures {
         viewBinding true // Habilitar el uso de ViewBinding
+        dataBinding true // Habilitar dataBinding
     }
+
 }
 
 dependencies {
@@ -49,11 +51,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1' // Biblioteca de Firebase Firestore
     implementation 'com.google.firebase:firebase-auth:21.0.1' // Biblioteca de Firebase Authentication
     implementation 'androidx.annotation:annotation:1.3.0' // Biblioteca de anotaciones de AndroidX
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1' // Biblioteca de LiveData de AndroidX
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1' // Biblioteca de ViewModel de AndroidX
     testImplementation 'junit:junit:4.13.2' // Biblioteca JUnit para pruebas unitarias
     androidTestImplementation 'androidx.test.ext:junit:1.1.5' // Biblioteca de JUnit para pruebas instrumentadas
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1' // Biblioteca de Espresso para pruebas instrumentadas
+    implementation 'com.google.android.material:material:1.9.0'
 
     def nav_version = "2.6.0"
     // Dependencias de Navigation

@@ -32,10 +32,10 @@ class StudentActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance() // Inicialización de la instancia de Firestore
 
         // Creación de la referencia a la sesión actual
-        val sessionRef = db.collection("Sessions").document("sessionID")
+        val sessionRef = db.collection("profesor").document("0B05EqNQzx2kmOjAEH6T")
 
         // Escucha de cambios en la colección de preguntas activas
-        sessionRef.collection("activeQuestions")
+        sessionRef.collection("preguntas")
             .orderBy("timeStamp", Query.Direction.DESCENDING) // Ordenar por el timestamp en orden descendente
             .limit(1) // Limitar los resultados a 1
             .addSnapshotListener { snapshots, e ->
@@ -67,13 +67,13 @@ class StudentActivity : AppCompatActivity() {
         // Inicialización de los botones del popup y asignación de su comportamiento al hacer click
         val yesButton: Button = layout.findViewById(R.id.button_option_one)
         yesButton.setOnClickListener {
-            sendResponse("up")  // Enviar la respuesta "up" al hacer click en "sí"
+            sendResponse("(y)")  // Enviar la respuesta "up" al hacer click en "sí"
             popup.dismiss()  // Cerrar el popup
         }
 
         val noButton: Button = layout.findViewById(R.id.button_option_two)
         noButton.setOnClickListener {
-            sendResponse("down") // Enviar la respuesta "down" al hacer click en "no"
+            sendResponse("(n)") // Enviar la respuesta "down" al hacer click en "no"
             popup.dismiss() // Cerrar el popup
         }
 
@@ -83,21 +83,29 @@ class StudentActivity : AppCompatActivity() {
 
     // Función para enviar la respuesta
     fun sendResponse(choice: String) {
-        // Creación de un HashMap con la respuesta
-        val response = hashMapOf(
-            "studentChoice" to choice
-        )
+        // Determinar el ID de respuesta basado en la elección
+        val responseId = if (choice == "up") "6jDP5fOeKvSUwh83d1DM" else "NOjKTD8AR63AcN4KO4sj"
 
-        // Añadir la respuesta a la colección de respuestas de la pregunta activa
-        db.collection("Sessions").document("sessionID")
-            .collection("activeQuestions").document(lastQuestionId)
-            .collection("responses")
-            .add(response)
-            .addOnSuccessListener {
-                Log.d(TAG, "Response successfully written!")  // Log en caso de éxito
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error writing response", e)  // Log en caso de error
-            }
+// Crear una referencia al documento de la respuesta en Firestore
+        val responseRef = db.collection("profesor").document("preguntas").collection("respuesta").document(responseId)
+
+// Iniciar una transacción para incrementar el contador
+        db.runTransaction { transaction ->
+            // Obtener el documento actual
+            val snapshot = transaction.get(responseRef)
+
+            // Leer el valor actual de "conteo_respuesta"
+            val currentCount = snapshot.getLong("conteo_respuesta") ?: 0
+
+            // Incrementar "conteo_respuesta" y guardar el nuevo valor
+            transaction.update(responseRef, "conteo_respuesta", currentCount + 1)
+
+            // No es necesario retornar nada
+            null
+        }.addOnSuccessListener {
+            Log.d(TAG, "Response count updated successfully!")  // Log en caso de éxito
+        }.addOnFailureListener { e ->
+            Log.w(TAG, "Error updating response count", e)  // Log en caso de error
+        }
     }
 }
