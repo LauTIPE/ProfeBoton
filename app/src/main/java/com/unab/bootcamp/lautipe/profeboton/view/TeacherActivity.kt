@@ -26,12 +26,12 @@ class TeacherActivity : AppCompatActivity() {
         val button: Button = findViewById(R.id.bottom_start_question)
         button.setOnClickListener {
             // Aquí necesitas obtener el ID de la pregunta que quieres actualizar
+
             // en este ejemplo, estoy usando "questionID" como un marcador de posición
+            val teacherId = "0B05EqNQzx2kmOjAEH6T"
             val questionId = "4MbODdoMvUpHArtFMnQN"
-
             // Crear una referencia al documento de la pregunta en Firestore
-            val questionRef = db.collection("profesor").document("preguntas").collection("preguntasID").document(questionId)
-
+            val questionRef = db.collection("profesor").document(teacherId).collection("preguntas").document(questionId)
             // Actualizar el valor de "estado_pregunta" a true
             questionRef
                 .update("estado_pregunta", true)
