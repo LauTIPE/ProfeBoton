@@ -39,7 +39,7 @@ class CrearCodigoActivity : AppCompatActivity() {
             if (sessionCode.isNotEmpty()) {
                 // Crear una nueva sesión con el código proporcionado
                 val newSession = hashMapOf(
-                    "id" to sessionCode,
+                    "codigo" to sessionCode,
                     // Añadir cualquier otro campo que desees
                 )
 

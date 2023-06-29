@@ -26,7 +26,7 @@ class StartActivity : AppCompatActivity() {
         // Configurar el click listener del botón del estudiante
         binding.buttonStudent.setOnClickListener {
             // Crear un intent para iniciar la actividad StudentActivity
-            val intent = Intent(this, StudentActivity::class.java)
+            val intent = Intent(this, IngresarCodigoActivity::class.java)
             startActivity(intent)
         }
     }

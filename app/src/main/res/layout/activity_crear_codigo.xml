@@ -30,13 +30,15 @@
 
     <EditText
         android:id="@+id/code_text_create"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorSecondary"
+        android:backgroundTintMode="screen"
         android:ems="10"
         android:gravity="center"
         android:importantForAutofill="yes"
-        android:inputType="text"
-        android:maxLength="30"
+        android:inputType="text|textCapCharacters|textNoSuggestions"
+        android:maxLength="8"
         android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
