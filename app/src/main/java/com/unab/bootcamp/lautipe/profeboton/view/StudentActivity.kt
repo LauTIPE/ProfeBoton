@@ -44,7 +44,7 @@ class StudentActivity : AppCompatActivity() {
                 questionId = document.id
                 val estadoPregunta = document.getBoolean("estado_pregunta")
 
-                if (estadoPregunta == true && estadoPregunta != estadoPreguntaAnterior) {
+                if (estadoPregunta == true) {
                     val classInfo = document.getString("clase")
                     val profesor = document.getString("profesor")
                     val materia = document.getString("materia")

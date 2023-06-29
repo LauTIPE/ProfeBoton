@@ -40,6 +40,11 @@ class TeacherActivity : AppCompatActivity() {
 
             // Asegúrate de que la sesión ha sido creada antes de intentar agregar una pregunta.
             if (sessionCode != null) {
+                // Actualizar el estado de la pregunta anterior a false si existe
+                if (questionId != null) {
+                    updatePreviousQuestionState(questionId!!)
+                }
+
                 // Agrega una nueva pregunta a la sesión actual en Firestore
                 db.collection("sesion").document(sessionCode!!).collection("preguntas")
                     .add(question)
@@ -80,5 +85,16 @@ class TeacherActivity : AppCompatActivity() {
         endClassButton.setOnClickListener {
             finish()
         }
+    }
+
+    private fun updatePreviousQuestionState(previousQuestionId: String) {
+        db.collection("sesion").document(sessionCode!!).collection("preguntas").document(previousQuestionId)
+            .update("estado_pregunta", false)
+            .addOnSuccessListener {
+                Log.d(TAG, "Previous question state updated to false")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error updating previous question state", e)
+            }
     }
 }
