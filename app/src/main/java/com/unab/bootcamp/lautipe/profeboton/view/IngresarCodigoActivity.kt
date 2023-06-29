@@ -35,10 +35,9 @@ class IngresarCodigoActivity : AppCompatActivity() {
                 db.collection("sesion").document(sessionCode).get()
                     .addOnSuccessListener { document ->
                         if (document != null && document.exists()) {
-                            // Aquí, cuando la sesión existe, puedes comenzar la nueva actividad.
-                            // Ejemplo: supongamos que quieres abrir una actividad llamada SessionActivity
+                            // Cuando la sesión existe, comienza la nueva actividad.
                             val intent = Intent(this, StudentActivity::class.java)
-                            intent.putExtra("SESSION_ID", sessionCode) // Pasando el código de sesión a la nueva actividad
+                            intent.putExtra("EXTRA_SESSION_ID", sessionCode) // Pasando el código de sesión a la nueva actividad
                             startActivity(intent)
                         } else {
                             Toast.makeText(this, "La sesión no existe", Toast.LENGTH_SHORT).show()
@@ -51,5 +50,6 @@ class IngresarCodigoActivity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor, ingresa un código", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 }

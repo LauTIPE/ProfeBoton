@@ -18,7 +18,7 @@
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/button_option_one"
+        android:id="@+id/button_option_a"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="👍"
@@ -27,7 +27,7 @@
         android:backgroundTint="@color/colorYesLight" />
 
     <Button
-        android:id="@+id/button_option_two"
+        android:id="@+id/button_option_b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="👎"

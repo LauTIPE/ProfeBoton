@@ -50,7 +50,10 @@ class CrearCodigoActivity : AppCompatActivity() {
                         Toast.makeText(this, "Sesión creada exitivamente", Toast.LENGTH_SHORT).show()
 
                         // Después de que la sesión se crea exitosamente, nos movemos a la actividad TeacherActivity
-                        val intent = Intent(this, TeacherActivity::class.java)
+                        val intent = Intent(this, TeacherActivity::class.java).apply {
+                            // Pasa el sessionCode como un extra
+                            putExtra("EXTRA_SESSION_CODE", sessionCode)
+                        }
                         startActivity(intent)
                     }
                     .addOnFailureListener { e ->
