@@ -66,9 +66,18 @@ class TeacherActivity : AppCompatActivity() {
 
                             for (dc in snapshots!!.documentChanges) {
                                 when (dc.type) {
-                                    DocumentChange.Type.ADDED -> Log.d(TAG, "New response: ${dc.document.data}")
-                                    DocumentChange.Type.MODIFIED -> Log.d(TAG, "Modified response: ${dc.document.data}")
-                                    DocumentChange.Type.REMOVED -> Log.d(TAG, "Removed response: ${dc.document.data}")
+                                    DocumentChange.Type.ADDED -> {
+                                        // Se ha agregado una nueva respuesta
+                                        Log.d(TAG, "New response: ${dc.document.data}")
+                                    }
+                                    DocumentChange.Type.MODIFIED -> {
+                                        // Se ha modificado una respuesta existente
+                                        Log.d(TAG, "Modified response: ${dc.document.data}")
+                                    }
+                                    DocumentChange.Type.REMOVED -> {
+                                        // Se ha eliminado una respuesta
+                                        Log.d(TAG, "Removed response: ${dc.document.data}")
+                                    }
                                 }
                             }
                         }
@@ -83,10 +92,12 @@ class TeacherActivity : AppCompatActivity() {
 
         val endClassButton: Button = findViewById(R.id.end_class_button)
         endClassButton.setOnClickListener {
+            // Finaliza la actividad actual
             finish()
         }
     }
 
+    // Función para actualizar el estado de la pregunta anterior a "false"
     private fun updatePreviousQuestionState(previousQuestionId: String) {
         db.collection("sesion").document(sessionCode!!).collection("preguntas").document(previousQuestionId)
             .update("estado_pregunta", false)

@@ -25,20 +25,25 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+        // Configuración de la barra de herramientas (toolbar)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        // Configuración del botón flotante (FloatingActionButton)
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
+            // Crear un intent para iniciar la actividad CrearCodigoActivity
             val intent = Intent(this, CrearCodigoActivity::class.java)
             startActivity(intent)
         }
 
+        // Configuración del DrawerLayout y NavigationView
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
+        // Configuración de las opciones de la barra de acción
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
@@ -49,6 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflar el menú; esto agrega elementos a la barra de acción si está presente.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
