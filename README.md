@@ -42,18 +42,3 @@ Para dar a conocer ProfeBoton y adquirir usuarios, se implementarán las siguien
 
 ## Desarrollo del Código:
 El desarrollo de ProfeBoton se realizará en Android Studio utilizando el lenguaje de programación Kotlin. Se seguirá la arquitectura Modelo-Vista-Presentador (MVP) para una separación clara de las responsabilidades y la escalabilidad del código. Firebase se utilizará para la gestión de usuarios, almacenamiento de datos y envío de notificaciones push.
-
-## Mockup del MVP:
-A continuación, se muestra un mockup simplificado del MVP de
-
-ProfeBoton:
-
-![Mockup de ProfeBoton](https://github.com/Ejemplo/ProfeBoton/mockup.png)
-
-El mockup muestra la interfaz principal de la aplicación, con dos opciones para el usuario: "Profesor" y "Estudiante". Al seleccionar "Profesor", se accede a la pantalla de inicio del profesor, donde se muestran las preguntas disponibles y las estadísticas de participación de los estudiantes. Al seleccionar "Estudiante", se muestra una pantalla donde los estudiantes pueden responder a las preguntas lanzadas por el profesor.
-
-También se incluyen elementos visuales como botones, campos de texto y gráficos básicos para representar las funcionalidades esenciales del MVP.
-
-## ¡Comencemos el desarrollo!
-
-Con todas estas consideraciones en mente, estamos listos para comenzar el desarrollo de ProfeBoton. Seguiremos los pasos y acuerdos mencionados anteriormente para construir un MVP funcional en un plazo de 7 días. Si tienes alguna pregunta adicional o necesitas más detalles, no dudes en hacerlas. ¡Estoy aquí para ayudarte en todo el proceso!
